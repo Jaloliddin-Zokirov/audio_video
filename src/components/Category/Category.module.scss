@@ -1,0 +1,77 @@
+.category__section {
+  padding: 60px 0;
+}
+
+.category__box {
+  display: flex;
+  flex-direction: column;
+}
+
+.category__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.category__image {
+  display: block;
+}
+
+.category__content {
+    
+}
+
+.category__firstName,
+.category__lastName {
+  font-size: 28px;
+}
+
+.category__tel {
+  display: block;
+  font-size: 28px;
+  text-decoration: none;
+}
+
+.category__canter {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 60px 0;
+  list-style-type: none;
+}
+
+.category__item {
+  width: 100%;
+  max-width: 40%;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px 0px;
+}
+
+.category__play {
+  display: block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.category__musicBox {
+  width: 100%;
+  padding: 0 30px;
+}
+
+.category__detail {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category__musicText {
+}
+
+.category__musicNota {
+}
+
+.category__wave {
+}

@@ -15,7 +15,13 @@ export default StoreWrapper;
 
 const initialState = {
   loading: false,
+  category: {
+    src: "",
+    firstName: "",
+    lastName: "",
+  },
 };
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -24,6 +30,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: action.payload,
+      };
+    }
+
+    case "category": {
+      return {
+        ...state,
+        category: action.payload,
       };
     }
 

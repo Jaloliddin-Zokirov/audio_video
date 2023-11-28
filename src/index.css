@@ -25,3 +25,10 @@ img {
   vertical-align: middle;
   object-fit: cover;
 }
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
