@@ -1,36 +1,80 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./Category.module.scss";
 import play from "../../assets/play-icon.png";
-import pausa from "../../assets/pausa-icon.png";
-// import pausa from "../../audio/TheFatRat-Upwind.mp3";
-// import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
-import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js";
+import pause from "../../assets/pause-icon.png";
+import UpwindMp3 from "../../audio/TheFatRat_Upwind.mp3";
+import WaveSurfer from "wavesurfer.js";
 
 const Category = ({ firstName, lastName }) => {
   const [check, setCheck] = useState(0);
+  const waveContainerRef = useRef(null);
+  const waveEndMinutSecuntRef = useRef(null);
+  const waveStartMinutSecuntRef = useRef(null);
+  const wavesurfer1Ref = useRef(null);
 
-  var timeCalculation = function (value) {
-    var second = Math.floor(value % 60);
-    var minut = Math.floor((value * 60) % 60);
-
-    if (second < 10) {
-      second = "0" + second;
-    }
-
-    return minut + ":" + second;
+  const setTime = (duration) => {
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  const wavesurfer = WaveSurfer.create({
-    container: document.body,
-    waveColor: "#4F4A85",
-    progressColor: "#383351",
-    // url: "./audio/TheFatRat-Upwind.wav",
-  });
+  useEffect(() => {
+    wavesurfer1Ref.current = WaveSurfer.create({
+      container: waveContainerRef.current,
+      waveColor: "#137a7f",
+      progressColor: "purple",
+      height: 50,
+    });
 
-  wavesurfer.load("./audio/TheFatRat-Upwind.wav")
+    wavesurfer1Ref.current.on("ready", function (e) {
+      if (waveEndMinutSecuntRef.current != null) {
+        waveEndMinutSecuntRef.current.textContent = setTime(
+          wavesurfer1Ref.current.getDuration()
+        );
+      }
+    });
 
-  const playPause = () => {
-    wavesurfer.playPause();
+    wavesurfer1Ref.current.on("audioprocess", function (e) {
+      if (waveStartMinutSecuntRef.current != null) {
+        waveStartMinutSecuntRef.current.textContent = setTime(
+          wavesurfer1Ref.current.getCurrentTime()
+        );
+      }
+    });
+
+    wavesurfer1Ref.current.load(UpwindMp3);
+
+    document.addEventListener("keydown", keybrd, true);
+
+    return () => {
+      wavesurfer1Ref.current.destroy();
+    };
+  }, []);
+
+  const keybrd = (e) => {
+    if (e.key === "ArrowRight" && wavesurfer1Ref.current != null) {
+      wavesurfer1Ref.current.skip(5);
+    }
+    if (e.key === "ArrowLeft" && wavesurfer1Ref.current != null) {
+      wavesurfer1Ref.current.skip(-5);
+    }
+    if (e.key === "" && wavesurfer1Ref.current != null) {
+      if (wavesurfer1Ref.current.isPlaying()) {
+        wavesurfer1Ref.current.pause();
+      } else {
+        wavesurfer1Ref.current.play();
+      }
+      setCheck((value) => (value === 1 ? 0 : 1));
+    }
+  };
+
+  const playstop = () => {
+    if (wavesurfer1Ref.current.isPlaying()) {
+      wavesurfer1Ref.current.pause();
+    } else {
+      wavesurfer1Ref.current.play();
+    }
+    setCheck((value) => (value === 1 ? 0 : 1));
   };
 
   return (
@@ -41,6 +85,8 @@ const Category = ({ firstName, lastName }) => {
             <img
               className={styles.category__image}
               src="https://picsum.photos/400"
+              width={400}
+              height={400}
               alt="photo"
             />
             <div className={styles.category__content}>
@@ -55,36 +101,48 @@ const Category = ({ firstName, lastName }) => {
             <li className={styles.category__item}>
               <img
                 className={styles.category__musicImg}
-                src="https://picsum.photos/100"
+                src="https://picsum.photos/160"
+                width={160}
+                height={160}
                 alt="image"
               />
               <div className={styles.category__musicBox}>
                 <div className={styles.category__detail}>
                   <p className={styles.category__musicText}>
                     {firstName} {lastName}
-                    <div className={styles.category__time}>
-                      <span className={styles.category__current}>0:00</span>{" "}
-                      {/* current */}
-                      <span className={styles.category__duration}>
+                    <span className={styles.category__time}>
+                      <span
+                        className={styles.category__current}
+                        ref={waveStartMinutSecuntRef}
+                      >
                         0:00
-                      </span>{" "}
-                      {/* duration */}
-                    </div>
+                      </span>
+                      <span> : </span>
+                      <span
+                        className={styles.category__duration}
+                        ref={waveEndMinutSecuntRef}
+                      >
+                        0:00
+                      </span>
+                    </span>
                   </p>
                   <div className={styles.category__control}>
-                    <img
-                      className={styles.category__play}
-                      src={check === 1 ? pausa : play}
-                      alt="play"
-                      onClick={() => {
-                        check === 1 ? setCheck(0) : setCheck(1);
-                        playPause();
-                      }}
-                    />{" "}
-                    {/* play pause */}
+                    <button
+                      className={styles.category__playBtn}
+                      onClick={() => playstop(1)}
+                    >
+                      <img
+                        className={styles.category__playImg}
+                        src={check === 1 ? play : pause}
+                        alt="play"
+                      />
+                    </button>
                   </div>
                 </div>
-                <div className={styles.category__wave} id="wavefrom"></div>
+                <div
+                  className={styles.category__wave}
+                  ref={waveContainerRef}
+                ></div>
               </div>
             </li>
           </ul>

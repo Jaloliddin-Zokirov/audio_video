@@ -94,6 +94,8 @@
 }
 
 .indexHome__img {
+  width: 210px;
+  height: 350px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -102,7 +104,7 @@
   margin-bottom: 70px;
 }
 
-
-.indexHome__firstname, .indexHome__lastname {
+.indexHome__firstname,
+.indexHome__lastname {
   font-size: 22px;
 }

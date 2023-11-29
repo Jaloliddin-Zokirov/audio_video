@@ -1,13 +1,78 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./IndexHome.module.scss";
 import { Link } from "react-router-dom";
-import play from "../../assets/play-icon.png";
-import pausa from "../../assets/pausa-icon.png";
+import pauseIcon from "../../assets/pause-icon.png";
+import playIcon from "../../assets/play-icon.png";
+import audio1 from "../../audio/tutututu-mem.mp3";
+import audio2 from "../../audio/eralash.mp3";
+import audio3 from "../../audio/luchshe-imet-druga.mp3";
+import audio4 from "../../audio/lya-tyi-kryisa1.mp3";
+import audio5 from "../../audio/muzyika-s-proydennoy-missiey-iz-gta-san-andreas.mp3";
+import audio6 from "../../audio/rejisser-kiborg-ubiytsa.mp3";
 import { StoreContext } from "../StoreWrapper/StoreWrapper";
 
-const IndexHome = () => {
-  const [check, setCheck] = useState(0);
+const IndexHome = React.memo(() => {
+  const [selectedAudio, setSelectedAudio] = useState(0);
   const { dispatch } = useContext(StoreContext);
+  const audioRefs = [
+    useRef(new Audio(audio1)),
+    useRef(new Audio(audio2)),
+    useRef(new Audio(audio3)),
+    useRef(new Audio(audio4)),
+    useRef(new Audio(audio5)),
+    useRef(new Audio(audio6)),
+  ];
+
+  useEffect(() => {
+    audioRefs.forEach((audioRef, index) => {
+      if (selectedAudio === index + 1) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+    });
+  }, [selectedAudio]);
+
+  const handleAudioClick = (index) => {
+    setSelectedAudio((prevSelectedAudio) =>
+      prevSelectedAudio === index + 1 ? 0 : index + 1
+    );
+  };
+
+  const renderListItem = (index, firstName, lastName, to) => (
+    <li key={index} className={styles.indexHome__item}>
+      <img
+        className={styles.indexHome__play}
+        src={selectedAudio === index + 1 ? playIcon : pauseIcon}
+        width={60}
+        height={60}
+        alt="play"
+        onClick={() => handleAudioClick(index)}
+      />
+      <Link
+        className={styles.indexHome__itemLink}
+        to={to}
+        onClick={() =>
+          dispatch({
+            type: "category",
+            payload: { src: to, firstName, lastName },
+          })
+        }
+      >
+        <img
+          className={styles.indexHome__img}
+          src={`https://picsum.photos/210/350?random=${index}`}
+          width={210}
+          height={350}
+          alt="image"
+        />
+        <div className={styles.indexHome__content}>
+          <p className={styles.indexHome__firstname}>{firstName}</p>
+          <p className={styles.indexHome__lastname}>{lastName}</p>
+        </div>
+      </Link>
+    </li>
+  );
 
   return (
     <section className={styles.indexHome__section}>
@@ -41,215 +106,17 @@ const IndexHome = () => {
             />
           </div>
           <ul className={styles.indexHome__list}>
-            <li className={styles.indexHome__item}>
-              <img
-                className={styles.indexHome__play}
-                src={check === 1 ? pausa : play}
-                alt="play"
-                onClick={() => {
-                  check === 1 ? setCheck(0) : setCheck(1);
-                }}
-              />
-              <Link
-                className={styles.indexHome__itemLink}
-                to={"jasur-mavlonov"}
-                onClick={() =>
-                  dispatch({
-                    type: "category",
-                    payload: {
-                      src: "jasur-mavlonov",
-                      firstName: "Jasur",
-                      lastName: "Mavlonov",
-                    },
-                  })
-                }
-              >
-                <img
-                  className={styles.indexHome__img}
-                  src="https://picsum.photos/210/350"
-                  alt="image"
-                />
-                <div className={styles.indexHome__content}>
-                  <p className={styles.indexHome__firstname}>Jasur</p>
-                  <p className={styles.indexHome__lastname}>Mavlonov</p>
-                </div>
-              </Link>
-            </li>
-            <li className={styles.indexHome__item}>
-              <img
-                className={styles.indexHome__play}
-                src={check === 2 ? pausa : play}
-                alt="play"
-                onClick={() => {
-                  check === 2 ? setCheck(0) : setCheck(2);
-                }}
-              />
-              <Link
-                className={styles.indexHome__itemLink}
-                to={"alisher-qodirov"}
-                onClick={() =>
-                  dispatch({
-                    type: "category",
-                    payload: {
-                      src: "alisher-qodirov",
-                      firstName: "Alisher",
-                      lastName: "Qodirov",
-                    },
-                  })
-                }
-              >
-                <img
-                  className={styles.indexHome__img}
-                  src="https://picsum.photos/210/350"
-                  alt="image"
-                />
-                <div className={styles.indexHome__content}>
-                  <p className={styles.indexHome__firstname}>Alisher</p>
-                  <p className={styles.indexHome__lastname}>Qodirov</p>
-                </div>
-              </Link>
-            </li>
-            <li className={styles.indexHome__item}>
-              <img
-                className={styles.indexHome__play}
-                src={check === 3 ? pausa : play}
-                alt="play"
-                onClick={() => {
-                  check === 3 ? setCheck(0) : setCheck(3);
-                }}
-              />
-              <Link
-                className={styles.indexHome__itemLink}
-                to={"ahmad-qosimov"}
-                onClick={() =>
-                  dispatch({
-                    type: "category",
-                    payload: {
-                      src: "ahmad-qosimov",
-                      firstName: "Ahmad",
-                      lastName: "Qosimov",
-                    },
-                  })
-                }
-              >
-                <img
-                  className={styles.indexHome__img}
-                  src="https://picsum.photos/210/350"
-                  alt="image"
-                />
-                <div className={styles.indexHome__content}>
-                  <p className={styles.indexHome__firstname}>Ahmad</p>
-                  <p className={styles.indexHome__lastname}>Qosimov</p>
-                </div>
-              </Link>
-            </li>
-            <li className={styles.indexHome__item}>
-              <img
-                className={styles.indexHome__play}
-                src={check === 4 ? pausa : play}
-                alt="play"
-                onClick={() => {
-                  check === 4 ? setCheck(0) : setCheck(4);
-                }}
-              />
-              <Link
-                className={styles.indexHome__itemLink}
-                to={"abdulla-ahmadov"}
-                onClick={() =>
-                  dispatch({
-                    type: "category",
-                    payload: {
-                      src: "abdulla-ahmadov",
-                      firstName: "Abdulla",
-                      lastName: "Ahmadov",
-                    },
-                  })
-                }
-              >
-                <img
-                  className={styles.indexHome__img}
-                  src="https://picsum.photos/210/350"
-                  alt="image"
-                />
-                <div className={styles.indexHome__content}>
-                  <p className={styles.indexHome__firstname}>Abdulla</p>
-                  <p className={styles.indexHome__lastname}>Ahmadov</p>
-                </div>
-              </Link>
-            </li>
-            <li className={styles.indexHome__item}>
-              <img
-                className={styles.indexHome__play}
-                src={check === 5 ? pausa : play}
-                alt="play"
-                onClick={() => {
-                  check === 5 ? setCheck(0) : setCheck(5);
-                }}
-              />
-              <Link
-                className={styles.indexHome__itemLink}
-                to={"shoira-sultonova"}
-                onClick={() =>
-                  dispatch({
-                    type: "category",
-                    payload: {
-                      src: "shoira-sultonova",
-                      firstName: "Shoira",
-                      lastName: "Sultonova",
-                    },
-                  })
-                }
-              >
-                <img
-                  className={styles.indexHome__img}
-                  src="https://picsum.photos/210/350"
-                  alt="image"
-                />
-                <div className={styles.indexHome__content}>
-                  <p className={styles.indexHome__firstname}>Shoira</p>
-                  <p className={styles.indexHome__lastname}>Sultonova</p>
-                </div>
-              </Link>
-            </li>
-            <li className={styles.indexHome__item}>
-              <img
-                className={styles.indexHome__play}
-                src={check === 6 ? pausa : play}
-                alt="play"
-                onClick={() => {
-                  check === 6 ? setCheck(0) : setCheck(6);
-                }}
-              />
-              <Link
-                className={styles.indexHome__itemLink}
-                to={"bobur-yoldoshev"}
-                onClick={() =>
-                  dispatch({
-                    type: "category",
-                    payload: {
-                      src: "bobur-yoldoshev",
-                      firstName: "Bobur",
-                      lastName: "Yoldoshev",
-                    },
-                  })
-                }
-              >
-                <img
-                  className={styles.indexHome__img}
-                  src="https://picsum.photos/210/350"
-                  alt="image"
-                />
-                <div className={styles.indexHome__content}>
-                  <p className={styles.indexHome__firstname}>Bobur</p>
-                  <p className={styles.indexHome__lastname}>Yoldoshev</p>
-                </div>
-              </Link>
-            </li>
+            {renderListItem(0, "Jasur", "Mavlonov", "jasur-mavlonov")}
+            {renderListItem(1, "Alisher", "Qodirov", "alisher-qodirov")}
+            {renderListItem(2, "Ahmad", "Qosimov", "ahmad-qosimov")}
+            {renderListItem(3, "Abdulla", "Ahmadov", "abdulla-ahmadov")}
+            {renderListItem(4, "Shoira", "Sultonova", "shoira-sultonova")}
+            {renderListItem(5, "Bobur", "Yoldoshev", "bobur-yoldoshev")}
           </ul>
         </div>
       </div>
     </section>
   );
-};
+});
 
 export default IndexHome;

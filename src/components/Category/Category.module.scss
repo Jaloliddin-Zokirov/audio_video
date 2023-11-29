@@ -15,10 +15,11 @@
 
 .category__image {
   display: block;
+  width: 400px;
+  height: 400px;
 }
 
 .category__content {
-    
 }
 
 .category__firstName,
@@ -42,22 +43,34 @@
 
 .category__item {
   width: 100%;
-  max-width: 40%;
+  max-width: 100%;
   display: flex;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px 0px;
 }
 
-.category__play {
+.category__musicImg {
   display: block;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
+  width: 160px;
+  height: 160px;
 }
 
 .category__musicBox {
   width: 100%;
-  padding: 0 30px;
+  padding: 0 20px;
+}
+
+.category__playBtn {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+}
+
+.category__playImg {
+  display: block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
 }
 
 .category__detail {
@@ -65,13 +78,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .category__musicText {
+  margin: 0;
 }
 
-.category__musicNota {
+.category__time {
+  display: block;
 }
 
 .category__wave {
+  display: block;
 }

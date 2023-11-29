@@ -14,7 +14,15 @@ function App() {
       <Route path="/" element={<Home />}>
         <Route index element={<IndexHome />} />
         <Route path="about" element={<About />} />
-        <Route path={category.src} element={<Category firstName={category.firstName} lastName={category.lastName} />} />
+        <Route
+          path={category.src}
+          element={
+            <Category
+              firstName={category.firstName}
+              lastName={category.lastName}
+            />
+          }
+        />
       </Route>
     </Routes>
   );
