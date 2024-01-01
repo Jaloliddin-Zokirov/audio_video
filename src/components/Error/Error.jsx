@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Error = () => {
+const Error = ({massageError}) => {
   return (
-    <div>Error</div>
+    <div>{massageError}</div>
   )
 }
 

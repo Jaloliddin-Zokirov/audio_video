@@ -1,0 +1,38 @@
+.hero__section {
+  padding: 80px 0;
+}
+
+.hero__boxTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hero__left {
+  width: 100%;
+  max-width: 40%;
+}
+
+.hero__title {
+}
+
+.hero__text {
+}
+
+.hero__btn {
+  display: block;
+  text-decoration: none;
+}
+
+.hero__right {
+}
+
+.hero__image {
+  display: block;
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+}

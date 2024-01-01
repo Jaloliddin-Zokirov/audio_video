@@ -1,5 +1,5 @@
 .category__section {
-  padding: 60px 0;
+  padding: 80px;
 }
 
 .category__box {
@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  margin-bottom: 100px;
 }
 
 .category__image {
@@ -27,68 +28,24 @@
   font-size: 28px;
 }
 
-.category__tel {
+.category__linkList {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.category__tel,
+.category__insta {
   display: block;
-  font-size: 28px;
   text-decoration: none;
 }
+
 
 .category__canter {
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding: 60px 0;
+  padding: 0;
   list-style-type: none;
 }
 
-.category__item {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px 0px;
-}
-
-.category__musicImg {
-  display: block;
-  width: 160px;
-  height: 160px;
-}
-
-.category__musicBox {
-  width: 100%;
-  padding: 0 20px;
-}
-
-.category__playBtn {
-  background-color: transparent;
-  border: none;
-  border-radius: 50%;
-}
-
-.category__playImg {
-  display: block;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-}
-
-.category__detail {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.category__musicText {
-  margin: 0;
-}
-
-.category__time {
-  display: block;
-}
-
-.category__wave {
-  display: block;
-}

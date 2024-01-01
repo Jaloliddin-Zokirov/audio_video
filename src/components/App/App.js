@@ -1,12 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../Home/Home";
 import IndexHome from "../IndexHome/IndexHome";
 import About from "../About/About";
 import Category from "../Category/Category";
 import { StoreContext } from "../StoreWrapper/StoreWrapper";
+import AdminHome from "../AdminPanel/AdminHome/AdminHome";
+import Error from "../Error/Error";
+import Voices from "../Voices/Voices";
 
-function App() {
+const App = React.memo(() => {
   const { category } = useContext(StoreContext);
 
   return (
@@ -14,18 +17,13 @@ function App() {
       <Route path="/" element={<Home />}>
         <Route index element={<IndexHome />} />
         <Route path="about" element={<About />} />
-        <Route
-          path={category.src}
-          element={
-            <Category
-              firstName={category.firstName}
-              lastName={category.lastName}
-            />
-          }
-        />
+        <Route path="voices" element={<Voices />} />
+        {category && <Route path={category.src} element={<Category />} />}
       </Route>
+      <Route path="/admin" element={<AdminHome />} />
+      <Route path="*" element={<Error />} />
     </Routes>
   );
-}
+});
 
 export default App;

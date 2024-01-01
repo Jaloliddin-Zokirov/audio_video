@@ -17,8 +17,7 @@ const initialState = {
   loading: false,
   category: {
     src: "",
-    firstName: "",
-    lastName: "",
+    id: "",
   },
 };
 
