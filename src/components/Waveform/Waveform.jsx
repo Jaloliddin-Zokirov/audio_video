@@ -21,9 +21,7 @@ const Waveform = React.memo(({ el, isPlaying, onPlay, onPause }) => {
       barRadius: 4,
     });
 
-    setInterval(() => {
-      newWaveform.load(el.audio)
-    }, 5000);
+    newWaveform.load(el.audio);
 
     setWaveform(newWaveform);
 
