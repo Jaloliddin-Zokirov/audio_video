@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Footer.module.scss";
 import axios from "axios";
 import Loading from "../Loading/Loading";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const [logo, setLogo] = useState();
@@ -10,6 +11,7 @@ const Footer = () => {
       .get("https://urchin-app-fuh4a.ondigitalocean.app/api/logo")
       .then((res) => setLogo(res.data));
   }, []);
+  
   return (
     <footer className={styles.footer}>
       <div className="container">
@@ -18,7 +20,7 @@ const Footer = () => {
             <Loading />
           ) : (
             logo.map((el) => {
-              return <img src={el.image} width={200} height={30} alt="site logo" key={el._id} />;
+              return <Link className={styles.footer__linkLogo} to={'/'} key={el._id}><img className={styles.footer__logoImg} src={`https://urchin-app-fuh4a.ondigitalocean.app${el.image}`} width={200} height={30} alt="site logo" /></Link>;
             })
           )}
         </div>

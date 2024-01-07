@@ -59,7 +59,7 @@ const Category = React.memo(() => {
           <div className={styles.category__top}>
             <img
               className={styles.category__image}
-              src={`https://urchin-app-fuh4a.ondigitalocean.app${categoryDetails.image}`}
+              src={`${categoryDetails.image}`}
               width={400}
               height={400}
               alt="photo"

@@ -26,18 +26,16 @@ const Hero = React.memo(() => {
                     <h2 className={styles.hero__title}>{el.title}</h2>
                     <p className={styles.hero__text}>{el.description}</p>
                     <Link to={"about"} className={styles.hero__btn}>
-                      MORE
+                      MORE...
                     </Link>
                   </div>
-                  <div className={styles.hero__right}>
-                    <img
-                      className={styles.hero__image}
-                      width={300}
-                      height={300}
-                      src={`https://urchin-app-fuh4a.ondigitalocean.app${el.image}`}
-                      alt="image"
-                    />
-                  </div>
+                  <img
+                    className={styles.hero__image}
+                    width={368}
+                    height={368}
+                    src={`https://urchin-app-fuh4a.ondigitalocean.app${el.image}`}
+                    alt="image"
+                  />
                 </div>
               </div>
             </section>

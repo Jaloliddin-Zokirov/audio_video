@@ -1,0 +1,42 @@
+.adminCategory__section {
+  width: 17%;
+  height: 100%;
+  padding: 30px 0;
+  background-color: #575757;
+}
+
+.adminCategory__logoBox {
+  width: 200px;
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+.adminCategory__logo {
+  display: block;
+  width: 200px;
+  height: 30px;
+}
+
+.adminCategory__list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.adminCategory__item {
+  cursor: pointer;
+
+  &:hover {
+    background-color: #727272;
+  }
+}
+
+.adminCategory__link {
+  display: block;
+  padding: 15px 25px;
+  text-decoration: none;
+  color: aliceblue;
+}

@@ -6,7 +6,7 @@ import axios from "axios";
 import Error from "../Error/Error";
 import telIcon from "../../assets/phone-call.png";
 import instaIcon from "../../assets/instagram.png";
-import searchIcon from "../../assets/search-interface-symbol.png";
+import searchIcon from "../../assets/search-interface-symbol.svg";
 
 const Header = React.memo(() => {
   const [logo, setlogo] = useState();
@@ -34,7 +34,7 @@ const Header = React.memo(() => {
                 return (
                   <Link
                     to={"/"}
-                    className={styles.header__link}
+                    className={styles.header__logoLink}
                     href="#"
                     key={el._id}
                   >
@@ -53,10 +53,10 @@ const Header = React.memo(() => {
           <div className={styles.header__right}>
             <ul className={styles.header__list}>
               <li className={styles.header__item}>
-                <Link to={"voices"}>Voices</Link>
+                <Link className={styles.header__link} to={"voices"}>Voices <span className={styles.link__line}></span></Link>
               </li>
               <li className={styles.header__item}>
-                <Link to={"about"}>About</Link>
+                <Link className={styles.header__link} to={"about"}>About <span className={styles.link__line}></span></Link>
               </li>
               <li className={styles.header__item}>
                 <div className={styles.search__box}>
@@ -71,7 +71,7 @@ const Header = React.memo(() => {
                     className={styles.header__search}
                     type="text"
                     name="search"
-                    placeholder="search"
+                    placeholder="search..."
                   />
                 </div>
               </li>
@@ -85,20 +85,20 @@ const Header = React.memo(() => {
                       >
                         <img
                           src={telIcon}
-                          width={30}
-                          height={30}
+                          width={35}
+                          height={35}
                           alt="tel icon"
                         />
                       </a>
                       <a
                         className={styles.header__insta}
-                        href="#"
+                        href={el.instagram}
                         target="blank"
                       >
                         <img
                           src={instaIcon}
-                          width={30}
-                          height={30}
+                          width={35}
+                          height={35}
                           alt="instagram icon"
                         />
                       </a>

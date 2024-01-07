@@ -21,7 +21,10 @@ const Waveform = React.memo(({ el, isPlaying, onPlay, onPause }) => {
       barRadius: 4,
     });
 
-    newWaveform.load(`https://urchin-app-fuh4a.ondigitalocean.app${el.audio}`);
+    setInterval(() => {
+      newWaveform.load(el.audio)
+    }, 5000);
+
     setWaveform(newWaveform);
 
     return () => {
@@ -56,6 +59,7 @@ const Waveform = React.memo(({ el, isPlaying, onPlay, onPause }) => {
   const handlePause = useCallback(() => {
     onPause();
   }, [onPause]);
+
   const [currentAudioId, setCurrentAudioId] = useState(null);
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -108,12 +112,21 @@ const Waveform = React.memo(({ el, isPlaying, onPlay, onPause }) => {
   };
 
   useEffect(() => {
-    waveform?.on("ready", function () {
-      setDuration(timeCalculator(waveform.getDuration()));
-    });
-    waveform?.on("audioprocess", function () {
-      setProcess(timeCalculator(waveform.getCurrentTime()));
-    });
+    if (waveform) {
+      waveform.on("ready", function () {
+        setDuration(timeCalculator(waveform.getDuration()));
+      });
+      waveform.on("audioprocess", function () {
+        setProcess(timeCalculator(waveform.getCurrentTime()));
+      });
+    }
+
+    return () => {
+      if (waveform) {
+        waveform.un("ready");
+        waveform.un("audioprocess");
+      }
+    };
   }, [waveform]);
 
   return (
