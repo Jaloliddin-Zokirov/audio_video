@@ -71,31 +71,39 @@ const Category = React.memo(() => {
               <p className={styles.category__lastName}>
                 {categoryDetails.lastname}
               </p>
-              {number?.map((phoneNumber) => (
-                <div
-                  className={styles.category__linkList}
-                  key={phoneNumber._id}
-                >
+              {number?.map((el) => (
+                <div className={styles.category__linkList} key={el._id}>
                   <a
                     className={styles.category__tel}
-                    href={`tel:+998${phoneNumber.number}`}
+                    href={`tel:+998${el.number}`}
                   >
-                    <img src={telIcon} width={30} height={30} alt="tel icon" />
+                    <img
+                      src={telIcon}
+                      width={45}
+                      height={45}
+                      alt="telephone icon"
+                    />
                   </a>
                   <a
                     className={styles.category__insta}
-                    href="#"
+                    href={el.instagram}
                     target="_blank"
                   >
                     <img
                       src={instaIcon}
-                      width={30}
-                      height={30}
+                      width={45}
+                      height={45}
                       alt="instagram icon"
                     />
                   </a>
                 </div>
               ))}
+              <p className={styles.category__description}>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit
+                sapiente a vitae saepe beatae est provident, quis fugit! Maiores
+                odio quaerat, eos suscipit quam aperiam, blanditiis unde minima,
+                voluptatibus ipsam tenetur explicabo vel minus consectetur.
+              </p>
             </div>
           </div>
           <ul className={styles.category__canter}>

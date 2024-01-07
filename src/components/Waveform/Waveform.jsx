@@ -14,10 +14,9 @@ const Waveform = React.memo(({ el, isPlaying, onPlay, onPause }) => {
   const initializeWaveform = useCallback(() => {
     const newWaveform = WaveSurfer.create({
       container: `#waveform-${el.id}`,
-      waveColor: "#588157",
-      progressColor: "#06070e",
-      height: 70,
-      barWidth: 0.5,
+      waveColor: "#000",
+      progressColor: "#415a77",
+      height: 80,
       barRadius: 4,
     });
 
@@ -51,10 +50,12 @@ const Waveform = React.memo(({ el, isPlaying, onPlay, onPause }) => {
   }, [isPlaying, waveform]);
 
   const handlePlay = useCallback(() => {
+    setPlaying(true);
     onPlay(el);
   }, [el, onPlay]);
 
   const handlePause = useCallback(() => {
+    setPlaying(false);
     onPause();
   }, [onPause]);
 
@@ -117,15 +118,24 @@ const Waveform = React.memo(({ el, isPlaying, onPlay, onPause }) => {
       waveform.on("audioprocess", function () {
         setProcess(timeCalculator(waveform.getCurrentTime()));
       });
+      waveform.on("finish", function () {
+        setPlaying(false);
+        if (playing && currentAudioId === el.id) {
+          setProcess("0:00");
+          waveform.seekTo(0);
+          handlePause();
+        }
+      });
     }
 
     return () => {
       if (waveform) {
         waveform.un("ready");
         waveform.un("audioprocess");
+        waveform.un("finish");
       }
     };
-  }, [waveform]);
+  }, [waveform, playing, currentAudioId, el.id]);
 
   return (
     <>
@@ -133,13 +143,6 @@ const Waveform = React.memo(({ el, isPlaying, onPlay, onPause }) => {
         <Loading />
       ) : (
         <li className={styles.wavefrom__item}>
-          <img
-            className={styles.wavefrom__btn}
-            src={playing ? play : pause}
-            alt="play pause icon"
-            onClick={playing ? handlePause : handlePlay}
-          />
-
           <div className={styles.wavefrom__audioBox}>
             <div className={styles.wavefrom__controller}>
               <div className={styles.wavefrom__textContent}>
@@ -147,12 +150,16 @@ const Waveform = React.memo(({ el, isPlaying, onPlay, onPause }) => {
                 <p className={styles.wavefrom__desc}>{el.description}</p>
               </div>
               <div className={styles.wavefrom__minutSecond}>
-                <span className={styles.wavefrom__start}>{process}</span>
-                {" / "}
-                <span className={styles.wavefrom__duration}>{duration}</span>
+                {process} {" / "} {duration}
               </div>
             </div>
             <div className={styles.wavefrom__box}>
+              <img
+                className={styles.wavefrom__btn}
+                src={playing ? play : pause}
+                alt="play pause icon"
+                onClick={playing ? handlePause : handlePlay}
+              />
               <div className={styles.wavefrom__wave} id={`waveform-${el.id}`} />
             </div>
           </div>
