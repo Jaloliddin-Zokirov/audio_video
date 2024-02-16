@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./VoicesCard.module.scss";
 import { Link } from "react-router-dom";
 import Loading from "../Loading/Loading";
-import { Pagination } from "antd";
+import { Pagination } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const VoicesCard = React.memo(({ check }) => {
@@ -39,11 +39,11 @@ const VoicesCard = React.memo(({ check }) => {
     });
   };
 
-  const getVisibleCategory = () => {
-    const startIndex = (pageNation - 1) * 9;
-    const endIndex = startIndex + (check ? 9 : 9);
+  const getVisibleCategory = useCallback(() => {
+    const startIndex = (pageNation - 1) * 8;
+    const endIndex = startIndex + 8;
     return userList.slice(startIndex, endIndex);
-  };
+  }, [userList, pageNation]);
 
   const goToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -127,11 +127,14 @@ c0,8.836-7.164,16-16,16h-32c-8.836,0-16-7.164-16-16V192c0-8.836,7.164-16,16-16h3
       </ul>
       <div>
         {!check && userList?.length > 8 ? (
-          <div className={styles.voice__pageNation}>
+          <div
+            className={`${styles.voice__pageNation} ${
+              themeList ? styles.pageNation__light : styles.pageNation__dark
+            }`}
+          >
             <Pagination
               count={Math.ceil(userList?.length / 8)}
-              variant="outlined"
-              size="large"
+              shape="rounded"
               page={pageNation}
               onChange={(event, value) => setPageNation(value)}
               onClick={goToTop}
@@ -140,7 +143,7 @@ c0,8.836-7.164,16-16,16h-32c-8.836,0-16-7.164-16-16V192c0-8.836,7.164-16,16-16h3
         ) : (
           <></>
         )}
-        {check && userList?.length < 8 ? (
+        {check && userList?.length > 8 ? (
           <Link
             className={`${styles.voice__more} ${
               themeList ? styles.voice__moreLight : styles.voice__moreDark
