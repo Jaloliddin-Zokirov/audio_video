@@ -105,6 +105,20 @@
   justify-content: flex-end;
 }
 
+.pageNation__light {
+  nav > ul > li > button {
+    color: #403d39;
+    border-color: #403d39;
+  }
+}
+
+.pageNation__dark {
+  nav > ul > li > button {
+    color: #ced4da;
+    border-color: #ced4da;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .voice__item {
     max-width: 200px;
