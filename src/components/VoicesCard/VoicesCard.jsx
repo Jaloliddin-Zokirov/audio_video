@@ -64,7 +64,7 @@ const VoicesCard = React.memo(({ check }) => {
                 >
                   <img
                     className={styles.voice__img}
-                    src={el[lang].smallimage}
+                    src={el[lang].image}
                     width={260}
                     height={300}
                     alt="image"

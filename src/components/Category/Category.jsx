@@ -86,11 +86,7 @@ const Category = React.memo(() => {
             <div className={styles.category__top}>
               <img
                 className={styles.category__image}
-                src={`${
-                  Width <= 855
-                    ? userCard[lang].smallimage
-                    : userCard[lang].image
-                }`}
+                src={userCard[lang].image}
                 width={400}
                 height={400}
                 alt="photo"
