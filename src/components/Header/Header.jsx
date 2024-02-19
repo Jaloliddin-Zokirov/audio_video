@@ -13,7 +13,7 @@ import MenuItem from "./MenuItem";
 import { Empty } from "antd";
 import ThemeToggle from "./ThemeToggle";
 import LangToggle from "./LangToggle";
-const elBody = document.getElementById("root");
+const elBody = document.getElementById("rootBody");
 
 const Header = React.memo(() => {
   const { logoList } = useSelector((state) => state.logo);

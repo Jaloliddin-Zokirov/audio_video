@@ -118,7 +118,7 @@ const Category = React.memo(() => {
                           />
                         </svg>
                       </a>
-                      <button className={styles.category__similar}>
+                      {/* <button className={styles.category__similar}>
                         <svg
                           width={27}
                           height={27}
@@ -131,7 +131,7 @@ const Category = React.memo(() => {
                             d="M8 3H3v18h5v2H1V1h7v2Zm13 0h-5V1h7v22h-7v-2h5V3Zm-10.55 7.72-1.25 3a1.33 1.33 0 0 1-2.42.08L5.38 11H4V9h1.8c.5 0 .96.29 1.19.74l.93 1.86 1.33-3.2a1.33 1.33 0 0 1 2.48.04l1.82 4.84 1.23-2.96a1.33 1.33 0 0 1 2.45-.04L18.48 13H20v2h-1.95c-.52 0-1-.3-1.21-.78l-.8-1.72-1.3 3.1a1.33 1.33 0 0 1-2.47-.04l-1.82-4.84Z"
                           ></path>
                         </svg>
-                      </button>
+                      </button> */}
                       <button
                         className={styles.category__share}
                         onClick={showModal}
@@ -161,6 +161,9 @@ const Category = React.memo(() => {
                       open={isModalOpen}
                       onOk={handleOk}
                       onCancel={handleCancel}
+                      className={`${
+                        themeList ? styles.modalLight : styles.modalDark
+                      }`}
                       footer
                     >
                       <div className="w-full flex items-center justify-around my-4">

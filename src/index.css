@@ -78,6 +78,12 @@ body {
   background-color: #212529;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .light {
   background-color: #fffcf2;
 }

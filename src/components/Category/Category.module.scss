@@ -136,15 +136,47 @@
   display: none;
 }
 
+.modalLight {
+  div:nth-child(2) {
+    background-color: #ccc5b9;
+    button,
+    div {
+      color: #403d39;
+      &:hover {
+        color: #403d39;
+      }
+    }
+  }
+  .copy__btn {
+    color: #eae0d5;
+    background-color: #69655f;
+  }
+}
+
+.modalDark {
+  div:nth-child(2) {
+    background-color: #343a40;
+    button,
+    div {
+      color: #d9d9d9;
+      &:hover {
+        color: #d9d9d9;
+      }
+    }
+  }
+  .copy__btn {
+    color: #d9d9d9;
+    background-color: #212529;
+  }
+}
+
 .copy__btn {
   width: 100%;
   display: block;
   margin-top: 30px;
   padding: 7px 25px;
   text-align: center;
-  color: #d9d9d9;
   cursor: pointer;
-  background-color: #424242;
   border-radius: 10px;
 }
 
