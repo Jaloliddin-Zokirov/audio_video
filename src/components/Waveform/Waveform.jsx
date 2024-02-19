@@ -113,7 +113,7 @@ const Waveform = React.memo(
             if (isPlaying && el.id === currentPlaying) {
               onPause();
             }
-            if (!isPlaying && el.id === temporaryId) {
+            if (currentPlaying === null && el.id === temporaryId) {
               onPlay(temporaryId);
             }
             break;
