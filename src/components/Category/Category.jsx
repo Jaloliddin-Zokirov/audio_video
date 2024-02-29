@@ -58,22 +58,6 @@ const Category = React.memo(() => {
     setCurrentPlaying(null);
   }, []);
 
-  const { innerWidth: width } = window;
-
-  const [Width, setWidth] = useState(width);
-
-  const updateWidth = () => {
-    setWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    setWidth(window.innerWidth);
-    window.addEventListener("resize", updateWidth);
-    return () => {
-      window.removeEventListener("resize", updateWidth);
-    };
-  }, []);
-
   return (
     <section
       className={
