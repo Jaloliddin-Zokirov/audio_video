@@ -119,6 +119,23 @@
   }
 }
 
+.empty__color {
+  color: #ced4da;
+}
+
+.empty__dark {
+  color: #403d39;
+}
+
+.no__data {
+  font-size: 18px;
+  color: #ced4da;
+}
+
+.data_dark {
+  color: #403d39;
+}
+
 @media only screen and (max-width: 600px) {
   .voice__item {
     max-width: 200px;

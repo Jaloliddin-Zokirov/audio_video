@@ -31,7 +31,7 @@ const Hero = () => {
                       {el[`${lang}`].description}
                     </p>
                     <Link to={"about"} className={styles.hero__btn}>
-                      MORE...
+                      {lang === "ru" ? "Более" : "Ko'proq"}
                     </Link>
                   </div>
                   <img
