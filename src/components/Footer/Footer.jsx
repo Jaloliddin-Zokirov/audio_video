@@ -91,14 +91,14 @@ const Footer = () => {
             <span className={styles.footer__info}>
               <span>© 2024 Шаблон Аудио-Видео</span>{" "}
               <span>
-                Создано <Link>Микромания</Link>
+                Создано <span>ТечWatchтоwер</span>
               </span>
             </span>
           ) : (
             <span className={styles.footer__info}>
               <span>© 2024 Audio-Video shabloni</span>{" "}
               <span>
-                <Link>Micromania</Link> tomonidan yaratilgan
+                <span>TechWatchtower</span> tomonidan yaratilgan
               </span>
             </span>
           )}
