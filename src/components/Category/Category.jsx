@@ -85,7 +85,7 @@ const Category = React.memo(() => {
                     <div className={styles.category__linkList}>
                       <a
                         className={styles.category__insta}
-                        href={userCard[lang].instagram}
+                        href={`https://instagram.com/${userCard[lang].instagram}`}
                         target="_blank"
                         rel="noreferrer"
                       >
